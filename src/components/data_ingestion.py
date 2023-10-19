@@ -24,6 +24,7 @@ class DataIngestion:
         self.ingestion_config=DataIngestionConfig()
 
     def initiate_data_ingestion(self):
+        logging.info("*********************************************************************************")
         logging.info("Entered the data ingestion method or component")
         try:
             df=pd.read_csv('notebook/data/stud.csv')
@@ -59,4 +60,5 @@ if __name__=="__main__":
     train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
 
     modeltrainer=ModelTrainer()
-    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
+    best_model = modeltrainer.initiate_model_trainer(train_arr,test_arr)
+    logging.info(f"best model is : {best_model[0]} ||  best model test score is : {best_model[1]}")
